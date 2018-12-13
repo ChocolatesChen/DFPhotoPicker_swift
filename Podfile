@@ -9,6 +9,7 @@ target 'DFPhotoPicker_swift' do
     pod 'YYWebImage'
     pod 'SwiftyJSON'
     pod 'WSProgressHUD'
+    pod 'MJExtension'
 end
 
 post_install do |installer|

@@ -11,6 +11,11 @@
 		5246370F21C0F6EB0037A92A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5246370E21C0F6EB0037A92A /* Assets.xcassets */; };
 		5246371221C0F6EB0037A92A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5246371021C0F6EB0037A92A /* LaunchScreen.storyboard */; };
 		52A6F9E221C20FA000C39CA5 /* DFPhotoPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 52A6F9E121C20FA000C39CA5 /* DFPhotoPicker.bundle */; };
+		52A6F9E421C2465D00C39CA5 /* DFPhotoPickerMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6F9E321C2465D00C39CA5 /* DFPhotoPickerMacro.swift */; };
+		52A6F9E621C252A200C39CA5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6F9E521C252A200C39CA5 /* BaseViewController.swift */; };
+		52A6F9E821C2550900C39CA5 /* DFPhotoConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6F9E721C2550900C39CA5 /* DFPhotoConfiguration.swift */; };
+		52A6F9EA21C25B3200C39CA5 /* DFPhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6F9E921C25B3200C39CA5 /* DFPhotoModel.swift */; };
+		52A6F9EC21C2630400C39CA5 /* DFPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6F9EB21C2630400C39CA5 /* DFPhotoManager.swift */; };
 		599F686A502E9A88C2F464F2 /* Pods_DFPhotoPicker_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 939A38347225C22671F55D68 /* Pods_DFPhotoPicker_swift.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +27,11 @@
 		5246371121C0F6EB0037A92A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5246371321C0F6EB0037A92A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52A6F9E121C20FA000C39CA5 /* DFPhotoPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DFPhotoPicker.bundle; sourceTree = "<group>"; };
+		52A6F9E321C2465D00C39CA5 /* DFPhotoPickerMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFPhotoPickerMacro.swift; sourceTree = "<group>"; };
+		52A6F9E521C252A200C39CA5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		52A6F9E721C2550900C39CA5 /* DFPhotoConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFPhotoConfiguration.swift; sourceTree = "<group>"; };
+		52A6F9E921C25B3200C39CA5 /* DFPhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFPhotoModel.swift; sourceTree = "<group>"; };
+		52A6F9EB21C2630400C39CA5 /* DFPhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFPhotoManager.swift; sourceTree = "<group>"; };
 		939A38347225C22671F55D68 /* Pods_DFPhotoPicker_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DFPhotoPicker_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D90D57BEB3E224AF2D542F /* Pods-DFPhotoPicker_swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFPhotoPicker_swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-DFPhotoPicker_swift/Pods-DFPhotoPicker_swift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +91,10 @@
 			isa = PBXGroup;
 			children = (
 				52A6F9E121C20FA000C39CA5 /* DFPhotoPicker.bundle */,
+				52A6F9E321C2465D00C39CA5 /* DFPhotoPickerMacro.swift */,
+				52A6F9E721C2550900C39CA5 /* DFPhotoConfiguration.swift */,
+				52A6F9E921C25B3200C39CA5 /* DFPhotoModel.swift */,
+				52A6F9EB21C2630400C39CA5 /* DFPhotoManager.swift */,
 			);
 			path = DFPhotoPicker;
 			sourceTree = "<group>";
@@ -95,6 +109,7 @@
 		52A6F97F21C1EF0900C39CA5 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				52A6F9E521C252A200C39CA5 /* BaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -220,6 +235,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DFPhotoPicker_swift/Pods-DFPhotoPicker_swift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/Shimmer/Shimmer.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/WSProgressHUD/WSProgressHUD.framework",
@@ -230,6 +246,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Shimmer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WSProgressHUD.framework",
@@ -249,7 +266,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52A6F9EC21C2630400C39CA5 /* DFPhotoManager.swift in Sources */,
 				5246370821C0F6E90037A92A /* AppDelegate.swift in Sources */,
+				52A6F9E821C2550900C39CA5 /* DFPhotoConfiguration.swift in Sources */,
+				52A6F9E421C2465D00C39CA5 /* DFPhotoPickerMacro.swift in Sources */,
+				52A6F9E621C252A200C39CA5 /* BaseViewController.swift in Sources */,
+				52A6F9EA21C25B3200C39CA5 /* DFPhotoModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
