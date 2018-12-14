@@ -7,6 +7,11 @@
 //
 
 import UIKit
+func uncaughtExceptionHandler(exception: NSException?) {
+    NSLog("CRASH: %@", exception ?? "")
+    NSLog("Stack Trace: %@", (exception?.callStackSymbols)!)
+    // Internal error reporting
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        NSSetUncaughtExceptionHandler(uncaughtExceptionHandler)
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let nav = UINavigationController(rootViewController: MenuViewController())
+        
+        window?.rootViewController = nav
+        
+        window?.makeKeyAndVisible()
+
+        
         return true
     }
 

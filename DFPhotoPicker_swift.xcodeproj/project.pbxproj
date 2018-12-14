@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5232963A21C2A5820039CADA /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5232963921C2A5820039CADA /* CustomViewController.swift */; };
+		5232963C21C2A5A80039CADA /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5232963B21C2A5A80039CADA /* MenuViewController.swift */; };
+		5232963E21C2B0A90039CADA /* BaseUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5232963D21C2B0A90039CADA /* BaseUITableView.swift */; };
 		5246370821C0F6E90037A92A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246370721C0F6E90037A92A /* AppDelegate.swift */; };
 		5246370F21C0F6EB0037A92A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5246370E21C0F6EB0037A92A /* Assets.xcassets */; };
 		5246371221C0F6EB0037A92A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5246371021C0F6EB0037A92A /* LaunchScreen.storyboard */; };
@@ -21,6 +24,9 @@
 
 /* Begin PBXFileReference section */
 		02215B6258BF5ACF55441B23 /* Pods-DFPhotoPicker_swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFPhotoPicker_swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DFPhotoPicker_swift/Pods-DFPhotoPicker_swift.debug.xcconfig"; sourceTree = "<group>"; };
+		5232963921C2A5820039CADA /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
+		5232963B21C2A5A80039CADA /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		5232963D21C2B0A90039CADA /* BaseUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableView.swift; sourceTree = "<group>"; };
 		5246370421C0F6E90037A92A /* DFPhotoPicker_swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFPhotoPicker_swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5246370721C0F6E90037A92A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5246370E21C0F6EB0037A92A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,6 +63,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5232963721C2A50C0039CADA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5232963821C2A51A0039CADA /* Controller */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		5232963821C2A51A0039CADA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5232963921C2A5820039CADA /* CustomViewController.swift */,
+				5232963B21C2A5A80039CADA /* MenuViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		524636FB21C0F6E90037A92A = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +101,7 @@
 		5246370621C0F6E90037A92A /* DFPhotoPicker_swift */ = {
 			isa = PBXGroup;
 			children = (
+				5232963721C2A50C0039CADA /* Classes */,
 				52A6F97F21C1EF0900C39CA5 /* Base */,
 				52A6F97E21C1EE6300C39CA5 /* Tools */,
 				52A6F97D21C1EE5A00C39CA5 /* DFPhotoPicker */,
@@ -110,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				52A6F9E521C252A200C39CA5 /* BaseViewController.swift */,
+				5232963D21C2B0A90039CADA /* BaseUITableView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -267,11 +292,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				52A6F9EC21C2630400C39CA5 /* DFPhotoManager.swift in Sources */,
+				5232963A21C2A5820039CADA /* CustomViewController.swift in Sources */,
 				5246370821C0F6E90037A92A /* AppDelegate.swift in Sources */,
 				52A6F9E821C2550900C39CA5 /* DFPhotoConfiguration.swift in Sources */,
 				52A6F9E421C2465D00C39CA5 /* DFPhotoPickerMacro.swift in Sources */,
 				52A6F9E621C252A200C39CA5 /* BaseViewController.swift in Sources */,
+				5232963E21C2B0A90039CADA /* BaseUITableView.swift in Sources */,
 				52A6F9EA21C25B3200C39CA5 /* DFPhotoModel.swift in Sources */,
+				5232963C21C2A5A80039CADA /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

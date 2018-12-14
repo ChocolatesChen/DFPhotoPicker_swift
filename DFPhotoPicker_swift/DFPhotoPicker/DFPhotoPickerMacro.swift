@@ -30,7 +30,7 @@ let kScreenHeight           = UIScreen.main.bounds.size.height
 let kScreenWidth            = UIScreen.main.bounds.size.width
 let kScreenBounds           = UIScreen.main.bounds
 
-let DFEncodeKey = "HXModelArray"
+let DFEncodeKey = "DFModelArray"
 
 let DFShowLog = true
 
@@ -61,19 +61,16 @@ let kDevice_iPhoneX_Series   = kDevice_iPhoneX_Xs || kDevice_iPhoneXR_Max
 
 
 //设备 系统高度
-let kSystemNavigationBarHeight  = (kDevice_iPhoneX_Series ? 88 : 64)
-let kSystemTopMargin            = (kDevice_iPhoneX_Series ? 44 : 0)
-let kSystemBottomMargin         = (kDevice_iPhoneX_Series ? 34 : 0)
+let kSystemNavigationBarHeight:CGFloat  = (kDevice_iPhoneX_Series ? 88 : 64)
+let kSystemTopMargin:CGFloat            = (kDevice_iPhoneX_Series ? 44 : 0)
+let kSystemBottomMargin:CGFloat         = (kDevice_iPhoneX_Series ? 34 : 0)
 
 //系统版本
 let kSystemVersion = UIDevice.current.systemVersion
 
 
 let iOS11_Later = (Double(kSystemVersion) ?? 0 >= 11.0)
-
 let iOS9Later   = (Double(kSystemVersion) ?? 0 >= 9.1)
-
 let iOS9_Later  = (Double(kSystemVersion) ?? 0 >= 9.0)
-
 let iOS8_2Later = (Double(kSystemVersion) ?? 0 >= 8.2)
 

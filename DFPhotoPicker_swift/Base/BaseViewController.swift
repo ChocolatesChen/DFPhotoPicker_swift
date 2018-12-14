@@ -35,7 +35,7 @@ class BaseViewController: UIViewController {
         if self.responds(to: #selector(getter: UIViewController.automaticallyAdjustsScrollViewInsets)) {
             self.automaticallyAdjustsScrollViewInsets = false
         }
-        view.backgroundColor = kColorBackgroundColor
+        view.backgroundColor = UIColor.white
         //self.view.frame 不用设置，系统会在viewDidLayoutSubviews自动设置
         
         /***************************************************************/
@@ -65,6 +65,59 @@ class BaseViewController: UIViewController {
     
     ///点击右按钮方法
     @objc func rightBarAction() {}
+    
+    final func setNavItemRightImage_CustomFrame(name:String, frame:CGRect) {
+        let imgName = name
+        let rightBtn = UIButton.init(type: .custom)
+        rightBtn.frame = frame
+        rightBtn.addTarget(self, action: #selector(BaseViewController.rightBarAction), for: .touchUpInside)
+        rightBtn.setImage(UIImage(named:imgName), for: .normal)
+        let rightBarItem = UIBarButtonItem(customView: rightBtn)
+        self.navigationItem.rightBarButtonItem = rightBarItem
+    }
+    
+    final func setNavMidLabel(text:String) {
+        let labelText = text
+        let titleLabel = UILabel()
+        titleLabel.text = labelText
+        titleLabel.textAlignment = NSTextAlignment.center
+        titleLabel.textColor = UIColor.black
+        //        titleLabel.font = kFontNavbarTitle
+        titleLabel.sizeToFit()
+        self.navigationItem.titleView = titleLabel
+    }
+    ///默认frame:(x: 120, y: 12, width: 80, height: 20)
+    final func setNavMidLabel_DefaultFrame(text:String, frame:CGRect) {
+        setNavItemRightImage_CustomFrame(name: text, frame: CGRect(x: 120, y: 12, width: 80, height: 20))
+    }
+    final func setNavMidLabel_CustomFrame(text:String, frame:CGRect) {
+        let labelText = text
+        let titleLabel = UILabel.init(frame: frame)
+        titleLabel.text = labelText
+        titleLabel.textAlignment = NSTextAlignment.center
+        titleLabel.textColor = UIColor.black
+        //        titleLabel.font = kFontNavbarTitle
+        self.navigationItem.titleView = titleLabel
+    }
+    
+    final func setNavItemMidImage(name:String) {
+        let image = UIImage(named:name)
+        if image != nil {
+            setNavItemMidImage_CustomFrame(name: name, frame: CGRect.init(origin: .zero, size: image!.size))
+        }
+    }
+    //默认frame:(x: 0, y: 0, width: 84, height: 35)
+    final func setNavItemMidImage_DefaultFrame(name:String){
+        setNavItemMidImage_CustomFrame(name: name, frame: CGRect(x: 0, y: 0, width: 84, height: 35))
+    }
+    final func setNavItemMidImage_CustomFrame(name:String, frame:CGRect) {
+        let imageView = UIImageView(frame:frame)
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.masksToBounds = true
+        imageView.image = UIImage(named: name)
+        imageView.backgroundColor = UIColor.clear
+        self.navigationItem.titleView = imageView
+    }
 }
 extension BaseViewController {
     ///自定义提示
@@ -104,7 +157,7 @@ extension BaseViewController {
                     ac()
                 }
             }
-            okAction.setValue(kColorThemeColor, forKey: "titleTextColor")
+            okAction.setValue(UIColor.red, forKey: "titleTextColor")
             alertController.addAction(okAction)
         }
         

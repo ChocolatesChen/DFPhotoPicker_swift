@@ -222,6 +222,42 @@ class DFPhotoConfiguration {
      */
     var statusBarStyle: UIStatusBarStyle?
     
+    /**
+     cell选中时的背景颜色
+     */
+    var cellSelectedBgColor: UIColor?
+
+    /**
+     cell选中时的文字颜色
+     */
+    var cellSelectedTitleColor: UIColor?
+
+    /**
+     选中时数字的颜色
+     */
+    var selectedTitleColor: UIColor?
+
+    /**
+     sectionHeader悬浮时的标题颜色 ios9以上才有效果
+     */
+    var sectionHeaderSuspensionTitleColor: UIColor?
+
+    /**
+     sectionHeader悬浮时的背景色 ios9以上才有效果
+     */
+    var sectionHeaderSuspensionBgColor: UIColor?
+
+    /**
+     导航栏标题颜色
+     */
+    var navigationTitleColor: UIColor?
+
+    /**
+     导航栏背景颜色
+     */
+    var navBarBackgroudColor: UIColor?
+
+    
     // MARK: - < 单例 >
     static let shared = DFPhotoConfiguration()
     private init() {
