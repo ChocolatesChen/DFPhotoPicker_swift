@@ -8,7 +8,6 @@
 
 #import "DFPhotoModel.h"
 #import "DFPhotoPicker_swift-Swift.h"
-#import "UIImage+Extension.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 @implementation DFPhotoModel
