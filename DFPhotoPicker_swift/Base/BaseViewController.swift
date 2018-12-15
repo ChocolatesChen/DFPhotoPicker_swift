@@ -20,13 +20,13 @@ class BaseViewController: UIViewController {
 
         /***************************************************************/
         ///navbar基本设置
-        
+        self.navigationController?.navigationBar.tintColor = kColorThemeColor
         if self.navigationController != nil {
             if self.navigationController!.viewControllers.count > 1 {
-                let leftBarItem = UIBarButtonItem.init(image: UIImage.init(named: "返回"), style: .plain, target: self, action: #selector(leftBarAction))
+                let leftBarItem = UIBarButtonItem.init(image: UIImage.init(named: "back"), style: .plain, target: self, action: #selector(leftBarAction))
                 self.navigationItem.leftBarButtonItem = leftBarItem
             } else if self.navigationController!.viewControllers.count == 1 && self.presentingViewController != nil {
-                let leftBarItem = UIBarButtonItem.init(image: UIImage.init(named: "关闭"), style: .plain, target: self, action: #selector(leftBarAction))
+                let leftBarItem = UIBarButtonItem.init(image: UIImage.init(named: "close"), style: .plain, target: self, action: #selector(leftBarAction))
                 self.navigationItem.leftBarButtonItem = leftBarItem
             }
         }

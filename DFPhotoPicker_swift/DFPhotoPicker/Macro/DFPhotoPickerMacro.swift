@@ -24,6 +24,26 @@ func NSLog<T>(_ message: T, filePath: String = #file, rowCount: Int = #line) {
     #endif
 }
 
+func setSafeString(_ value:Any?) -> String{
+    return value as? String ?? ""
+}
+
+func setSafeInt(_ value:Any?) -> Int {
+    return value as? Int ?? 0
+}
+
+func setSafeInt64(_ value:Any?) -> Int64 {
+    return value as? Int64 ?? Int64(0)
+}
+
+func setSafeDouble(_ value:Any?) -> Double {
+    return value as? Double ?? 0.0
+}
+
+func setSafeBool(_ value:Any?) -> Bool {
+    return value as? Bool ?? false
+}
+
 
 //frame
 let kScreenHeight           = UIScreen.main.bounds.size.height
