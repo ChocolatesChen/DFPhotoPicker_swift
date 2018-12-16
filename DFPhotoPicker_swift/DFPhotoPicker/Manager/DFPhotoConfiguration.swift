@@ -491,6 +491,74 @@ class DFPhotoConfiguration {
         setup()
     }
     private func setup(){
+        self.open3DTouchPreview = true
+        self.openCamera = true
+        self.lookLivePhoto = false
+        self.lookGifPhoto = true
+        self.selectTogether = true
+        self.maxNum = 10;
+        self.photoMaxNum = 9;
+        self.videoMaxNum = 1;
+        self.showBottomPhotoDetail = true
+        if (kScreenWidth == 320) {
+            self.rowCount = 3;
+            self.sectionHeaderShowPhotoLocation = NO;
+        }else {
+            if ([HXPhotoTools isIphone6]) {
+                self.rowCount = 3;
+                self.sectionHeaderShowPhotoLocation = NO;
+            }else {
+                self.sectionHeaderShowPhotoLocation = YES;
+                self.rowCount = 4;
+            }
+        }
+        self.downloadICloudAsset = YES;
+        self.videoMaxDuration = 3 * 60.f;
+        self.videoMaximumDuration = 60.f;
         
+        self.creationDateSort = YES;
+        
+        //    self.saveSystemAblum = NO;
+        //    self.deleteTemporaryPhoto = YES;
+        self.showDateSectionHeader = YES;
+        //    self.reverseDate = NO;
+        if ([UIScreen mainScreen].bounds.size.width != 320) {
+            self.cameraCellShowPreview = YES;
+        }
+        //    self.horizontalHideStatusBar = NO;
+        self.customAlbumName = [NSBundle mainBundle].infoDictionary[(NSString *)kCFBundleNameKey];
+        self.horizontalRowCount = 6;
+        self.sectionHeaderTranslucent = YES;
+        self.supportRotation = YES;
+        
+        self.pushTransitionDuration = 0.45f;
+        self.popTransitionDuration = 0.35f;
+        self.popInteractiveTransitionDuration = 0.35f;
+        self.transitionAnimationOption = UIViewAnimationOptionCurveEaseOut;
+        if (HX_IS_IPhoneX_All) {
+            self.clarityScale = 2.4f;
+        }else if ([UIScreen mainScreen].bounds.size.width == 320) {
+            self.clarityScale = 1.2;
+        }else if ([UIScreen mainScreen].bounds.size.width == 375) {
+            self.clarityScale = 1.8;
+        }else {
+            self.clarityScale = 2.0;
+        }
+        
+        self.doneBtnShowDetail = YES;
+        //    self.videoCanEdit = YES;
+        self.singleJumpEdit = YES;
+        self.photoCanEdit = YES;
+        self.localFileName = @"HXPhotoPickerModelArray";
+        self.requestImageAfterFinishingSelection = YES;
+        
+        self.popupTableViewCellHeight = 65.f;
+        if (HX_IS_IPhoneX_All) {
+            self.popupTableViewHeight = 450;
+        }else {
+            self.popupTableViewHeight = 350;
+        }
+        self.popupTableViewHorizontalHeight = 250;
+        //    self.albumShowMode = HXPhotoAlbumShowModePopup;
     }
 }
