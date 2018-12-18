@@ -496,69 +496,70 @@ class DFPhotoConfiguration {
         self.lookLivePhoto = false
         self.lookGifPhoto = true
         self.selectTogether = true
-        self.maxNum = 10;
-        self.photoMaxNum = 9;
-        self.videoMaxNum = 1;
+        self.maxNum = 10
+        self.photoMaxNum = 9
+        self.videoMaxNum = 1
         self.showBottomPhotoDetail = true
         if (kScreenWidth == 320) {
-            self.rowCount = 3;
-            self.sectionHeaderShowPhotoLocation = NO;
+            self.rowCount = 3
+            self.sectionHeaderShowPhotoLocation = false
         }else {
-            if ([HXPhotoTools isIphone6]) {
-                self.rowCount = 3;
-                self.sectionHeaderShowPhotoLocation = NO;
+            if ([DFPhotoTools isIphone6]) {
+                self.rowCount = 3
+                self.sectionHeaderShowPhotoLocation = false
             }else {
-                self.sectionHeaderShowPhotoLocation = YES;
-                self.rowCount = 4;
+                self.sectionHeaderShowPhotoLocation = false
+                self.rowCount = 4
             }
         }
-        self.downloadICloudAsset = YES;
-        self.videoMaxDuration = 3 * 60.f;
-        self.videoMaximumDuration = 60.f;
+        self.downloadICloudAsset = true
+        self.videoMaxDuration = 3 * 60
+        self.videoMaximumDuration = 60
         
-        self.creationDateSort = YES;
+        self.creationDateSort = true
         
-        //    self.saveSystemAblum = NO;
-        //    self.deleteTemporaryPhoto = YES;
-        self.showDateSectionHeader = YES;
-        //    self.reverseDate = NO;
-        if ([UIScreen mainScreen].bounds.size.width != 320) {
-            self.cameraCellShowPreview = YES;
+        //    self.saveSystemAblum = false
+        //    self.deleteTemporaryPhoto = true
+        self.showDateSectionHeader = true
+        //    self.reverseDate = false
+        if (kScreenWidth != 320) {
+            self.cameraCellShowPreview = true
         }
-        //    self.horizontalHideStatusBar = NO;
-        self.customAlbumName = [NSBundle mainBundle].infoDictionary[(NSString *)kCFBundleNameKey];
-        self.horizontalRowCount = 6;
-        self.sectionHeaderTranslucent = YES;
-        self.supportRotation = YES;
+        //    self.horizontalHideStatusBar = false
+        self.customAlbumName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
+
+        self.horizontalRowCount = 6
+        self.sectionHeaderTranslucent = true
+        self.supportRotation = true
         
-        self.pushTransitionDuration = 0.45f;
-        self.popTransitionDuration = 0.35f;
-        self.popInteractiveTransitionDuration = 0.35f;
-        self.transitionAnimationOption = UIViewAnimationOptionCurveEaseOut;
-        if (HX_IS_IPhoneX_All) {
-            self.clarityScale = 2.4f;
-        }else if ([UIScreen mainScreen].bounds.size.width == 320) {
-            self.clarityScale = 1.2;
-        }else if ([UIScreen mainScreen].bounds.size.width == 375) {
-            self.clarityScale = 1.8;
+        self.pushTransitionDuration = 0.45
+        self.popTransitionDuration = 0.35
+        self.popInteractiveTransitionDuration = 0.35
+        self.transitionAnimationOption = UIView.AnimationOptions.curveEaseOut
+        if (kDevice_iPhoneX_Series) {
+            self.clarityScale = 2.4
+        }else if (kScreenWidth == 320) {
+            self.clarityScale = 1.2
+        }else if (kScreenWidth == 375) {
+            self.clarityScale = 1.8
         }else {
-            self.clarityScale = 2.0;
+            self.clarityScale = 2.0
         }
         
-        self.doneBtnShowDetail = YES;
-        //    self.videoCanEdit = YES;
-        self.singleJumpEdit = YES;
-        self.photoCanEdit = YES;
-        self.localFileName = @"HXPhotoPickerModelArray";
-        self.requestImageAfterFinishingSelection = YES;
+        self.doneBtnShowDetail = true
+        //    self.videoCanEdit = true
+        self.singleJumpEdit = true
+        self.photoCanEdit = true
+        self.localFileName = "DFPhotoPickerModelArray"
+        self.requestImageAfterFinishingSelection = true
         
-        self.popupTableViewCellHeight = 65.f;
-        if (HX_IS_IPhoneX_All) {
-            self.popupTableViewHeight = 450;
+        self.popupTableViewCellHeight = 65
+        if (kDevice_iPhoneX_Series) {
+            self.popupTableViewHeight = 450
         }else {
-            self.popupTableViewHeight = 350;
+            self.popupTableViewHeight = 350
         }
-        self.popupTableViewHorizontalHeight = 250;
+        self.popupTableViewHorizontalHeight = 250
         //    self.albumShowMode = HXPhotoAlbumShowModePopup;
     }
 }

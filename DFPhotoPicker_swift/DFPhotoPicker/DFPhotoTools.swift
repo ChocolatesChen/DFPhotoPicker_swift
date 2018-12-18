@@ -67,5 +67,69 @@ import UIKit
         }
         return geoCoder
     }
+    class func getAVAsset(with model: DFPhotoModel?,
+                          startRequestIcloud: @escaping (_ model: DFPhotoModel?, _ cloudRequestId: PHImageRequestID) -> Void,
+                          progressHandler: @escaping (_ model: DFPhotoModel?, _ progress: Double) -> Void,
+                          completion: @escaping (_ model: DFPhotoModel?, _ asset: AVAsset?) -> Void,
+                          failed: @escaping (_ model: DFPhotoModel?, _ info: [AnyHashable : Any]?) -> Void)
+        -> PHImageRequestID {
+        var options = PHVideoRequestOptions()
+        options.deliveryMode = .fastFormat
+        options.isNetworkAccessAllowed = false
+        var requestId = PHImageRequestID(0)
+        model?.iCloudDownloading = true
+        requestId = PHImageManager.default().requestAVAsset(forVideo: (model?.asset)!, options: options, resultHandler: { asset, audioMix, info in
+            var downloadFinined: Bool = !(setSafeBool(info?[PHImageCancelledKey])) && info?[PHImageErrorKey] == nil && !(setSafeBool(info?[PHImageResultIsDegradedKey]))
+            if downloadFinined && (asset != nil) {
+                DispatchQueue.main.async(execute: {
+                    model?.iCloudDownloading = false
+                    model?.isICloud = false
+                    completion(model, asset)
+                })
+            } else {
+                if (setSafeBool(info?[PHImageResultIsInCloudKey])) &&
+                    !(setSafeBool(info?[PHImageCancelledKey])) &&
+                    info?[PHImageErrorKey] == nil {
+                    var cloudRequestId = PHImageRequestID(0)
+                    var cloudOptions = PHVideoRequestOptions()
+                    cloudOptions.deliveryMode = .mediumQualityFormat
+                    cloudOptions.isNetworkAccessAllowed = true
+                    cloudOptions.progressHandler = { progress, error, stop, info in
+                        DispatchQueue.main.async(execute: {
+                            model?.iCloudProgress = CGFloat(progress)
+                            progressHandler(model, progress)
+                        })
+                    }
+                    cloudRequestId = PHImageManager.default().requestAVAsset(forVideo: (model?.asset)!, options: cloudOptions, resultHandler: { asset, audioMix, info in
+                        var downloadFinined: Bool = !(setSafeBool(info?[PHImageCancelledKey])) && info[PHImageErrorKey] == nil && !(setSafeBool(info?[PHImageResultIsDegradedKey]))
+                        if downloadFinined && (asset != nil) {
+                            DispatchQueue.main.async(execute: {
+                                model?.iCloudDownloading = false
+                                model?.isICloud = false
+                                completion(model, asset)
+                            })
+                        } else {
+                            DispatchQueue.main.async(execute: {
+                                if !(setSafeBool(info?[PHImageCancelledKey])) {
+                                    model?.iCloudDownloading = false
+                                }
+                                failed(model, info)
+                            })
+                        }
+
+                    })
+                    DispatchQueue.main.async(execute: {
+                        model?.iCloudRequestID = cloudRequestId
+                        startRequestIcloud(model, cloudRequestId)
+                    })
+
+
+                }
+
+            }
+
+        })
+
+    }
 
 }
