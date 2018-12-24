@@ -267,7 +267,11 @@ import UIKit
         model?.iCloudRequestID = requestID
         return requestID
     }
-    class func getImagePath(with model: DFPhotoModel?, startRequestIcloud: @escaping (DFPhotoModel?, PHContentEditingInputRequestID) -> Void, progressHandler: @escaping (DFPhotoModel?, Double) -> Void, completion: @escaping (DFPhotoModel?, String?) -> Void, failed: @escaping (DFPhotoModel?, [AnyHashable : Any]?) -> Void) -> PHContentEditingInputRequestID {
+    class func getImagePath(with model: DFPhotoModel?,
+                            startRequestIcloud: @escaping (DFPhotoModel?, PHContentEditingInputRequestID) -> Void,
+                            progressHandler: @escaping (DFPhotoModel?, Double) -> Void,
+                            completion: @escaping (DFPhotoModel?, String?) -> Void,
+                            failed: @escaping (DFPhotoModel?, [AnyHashable : Any]?) -> Void) -> PHContentEditingInputRequestID {
         let options = PHContentEditingInputRequestOptions()
         options.isNetworkAccessAllowed = false
         return (model?.asset.requestContentEditingInput(with: options, completionHandler: { contentEditingInput, info in
@@ -312,7 +316,9 @@ import UIKit
             }
         }))!
     }
-    class func getPhotoFor(_ asset: PHAsset?, size: CGSize, completion: @escaping (_ image: UIImage?, _ info: [AnyHashable : Any]?) -> Void) -> PHImageRequestID {
+    class func getPhotoFor(_ asset: PHAsset?,
+                           size: CGSize,
+                           completion: @escaping (_ image: UIImage?, _ info: [AnyHashable : Any]?) -> Void) -> PHImageRequestID {
         let option = PHImageRequestOptions()
         option.resizeMode = .fast
         
@@ -330,7 +336,10 @@ import UIKit
         }
         return 0
     }
-    class func getHighQualityFormatPhoto(for asset: PHAsset?, size: CGSize, completion: @escaping (_ image: UIImage?, _ info: [AnyHashable : Any]?) -> Void, error: @escaping (_ info: [AnyHashable : Any]?) -> Void) -> PHImageRequestID {
+    class func getHighQualityFormatPhoto(for asset: PHAsset?,
+                                         size: CGSize,
+                                         completion: @escaping (_ image: UIImage?, _ info: [AnyHashable : Any]?) -> Void,
+                                         error: @escaping (_ info: [AnyHashable : Any]?) -> Void) -> PHImageRequestID {
         let option = PHImageRequestOptions()
         option.deliveryMode = .highQualityFormat
         option.resizeMode = .fast
@@ -354,7 +363,9 @@ import UIKit
         }
         return requestID ?? 0
     }
-    class func getImageWith(_ model: DFAlbumModel?, size: CGSize, completion: @escaping (_ image: UIImage?, _ model: DFAlbumModel?) -> Void) -> PHImageRequestID {
+    class func getImageWith(_ model: DFAlbumModel?,
+                            size: CGSize,
+                            completion: @escaping (_ image: UIImage?, _ model: DFAlbumModel?) -> Void) -> PHImageRequestID {
         let option = PHImageRequestOptions()
         option.resizeMode = .fast
         if let anAsset = model?.asset {
@@ -369,7 +380,10 @@ import UIKit
         }
         return 0
     }
-    class func getImageWith(_ model: DFAlbumModel?, asset: PHAsset?, size: CGSize, completion: @escaping (_ image: UIImage?, _ model: DFAlbumModel?) -> Void) -> PHImageRequestID {
+    class func getImageWith(_ model: DFAlbumModel?,
+                            asset: PHAsset?,
+                            size: CGSize,
+                            completion: @escaping (_ image: UIImage?, _ model: DFAlbumModel?) -> Void) -> PHImageRequestID {
         let option = PHImageRequestOptions()
         option.resizeMode = .fast
         if let anAsset = asset {
@@ -385,7 +399,8 @@ import UIKit
         }
         return 0
     }
-    class func getImageWith(_ model: DFPhotoModel?, completion: @escaping (_ image: UIImage?, _ model: DFPhotoModel?) -> Void) -> PHImageRequestID {
+    class func getImageWith(_ model: DFPhotoModel?,
+                            completion: @escaping (_ image: UIImage?, _ model: DFPhotoModel?) -> Void) -> PHImageRequestID {
         let option = PHImageRequestOptions()
         option.resizeMode = .fast
         if let anAsset = model?.asset {
@@ -404,7 +419,9 @@ import UIKit
         return 0
     }
     @available(iOS 9.1, *)
-    class func fetchLivePhoto(for asset: PHAsset?, size: CGSize, completion: @escaping (PHLivePhoto?, [AnyHashable : Any]?) -> Void) -> PHImageRequestID {
+    class func fetchLivePhoto(for asset: PHAsset?,
+                              size: CGSize,
+                              completion: @escaping (PHLivePhoto?, [AnyHashable : Any]?) -> Void) -> PHImageRequestID {
         let option = PHLivePhotoRequestOptions()
         option.deliveryMode = .highQualityFormat
         option.isNetworkAccessAllowed = false
@@ -687,33 +704,24 @@ import UIKit
         let collections: PHFetchResult<PHAssetCollection> = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: nil)
         
         var createCollection: PHAssetCollection? = nil
-        collections.enumerateObjects { (collections, index, _) in
+        collections.enumerateObjects { (collections, index, stop) in
             if (collections.localizedTitle == title) {
                 createCollection = collections
-                stop = true
-
-            }
-        }
-        for collection: PHFetchResult<PHAssetCollection> in collections {
-            if (collection?.localizedTitle == title) {
-                createCollection = collection
-                break
+                stop.pointee = true
             }
         }
         if createCollection == nil {
-            
-            var error1: Error? = nil
             var createCollectionID: String? = nil
-            try? PHPhotoLibrary.shared().performChangesAndWait({
-                let title = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
-                createCollectionID = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: title ?? "").placeholderForCreatedAssetCollection.localIdentifier
-            })
             
-            if error1 != nil {
+            do {
+                try PHPhotoLibrary.shared().performChangesAndWait({
+                    let title = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
+                    createCollectionID = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: title ?? "").placeholderForCreatedAssetCollection.localIdentifier
+                })
+            } catch {
                 if DFShowLog {
                     NSLog("创建相册失败...")
                 }
-                
                 return nil
             }
             // 创建相册之后我们还要获取此相册  因为我们要往进存储相片
@@ -721,6 +729,173 @@ import UIKit
         }
         
         return createCollection
+    }
+    class func getTextWidth(_ text: String?, height: CGFloat, fontSize: CGFloat) -> CGFloat {
+        
+        return self.getTextWidth(text, height: height, font: UIFont.systemFont(ofSize: fontSize))
+    }
+    
+    class func getTextWidth(_ text: String?, height: CGFloat, font: UIFont?) -> CGFloat {
+        var newSize: CGSize? = nil
+        if let aFont = font {
+            newSize = text?.boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: height), options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: aFont], context: nil).size
+        }
+        
+        return newSize?.width ?? 0.0
+    }
+    class func getTextHeight(_ text: String?, width: CGFloat, font: UIFont?) -> CGFloat {
+        var newSize: CGSize? = nil
+        if let aFont = font {
+            newSize = text?.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: aFont], context: nil).size
+        }
+        
+        return newSize?.height ?? 0.0
+    }
+    class func isIphone6() -> Bool {
+        
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let platform = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        
+        if (platform == "iPhone7,2") {
+            //6
+            return true
+        }
+        if (platform == "iPhone8,1") {
+            //6s
+            return true
+        }
+        if (platform == "iPhone9,1") || (platform == "iPhone9,3") {
+            //7
+            return true
+        }
+        if (platform == "iPhone10,1") || (platform == "iPhone10,4") {
+            //8
+            return true
+        }
+        return false
+    }
+    class func platform() -> Bool {
+        
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let platform = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        var have = false
+        if (platform == "iPhone8,1") {
+            // iphone6s
+            have = true
+        } else if (platform == "iPhone8,2") {
+            // iphone6s plus
+            have = true
+        } else if (platform == "iPhone9,1") {
+            // iphone7
+            have = true
+        } else if (platform == "iPhone9,2") {
+            // iphone7 plus
+            have = true
+        } else if (platform == "iPhone10,1") {
+            // iphone7 plus
+            have = true
+        } else if (platform == "iPhone10,2") {
+            // iphone7 plus
+            have = true
+        } else if (platform == "iPhone10,3") {
+            // iphone7 plus
+            have = true
+        } else if (platform == "iPhone10,4") {
+            // iphone7 plus
+            have = true
+        } else if (platform == "iPhone10,5") {
+            // iphone7 plus
+            have = true
+        } else if (platform == "iPhone10,6") {
+            // iphone7 plus
+            have = true
+        }
+        return have
+    }
+    class func getHighQualityFormatPhoto(_ asset: PHAsset?,
+                                         size: CGSize,
+                                         succeed: @escaping (_ image: UIImage?) -> Void,
+                                         failed: @escaping () -> Void) -> PHImageRequestID {
+        let option = PHImageRequestOptions()
+        option.deliveryMode = .highQualityFormat
+        option.resizeMode = .fast
+        option.isNetworkAccessAllowed = false
+        var requestID: PHImageRequestID? = nil
+        if let anAsset = asset {
+            requestID = PHImageManager.default().requestImage(for: anAsset, targetSize: size, contentMode: .aspectFill, options: option, resultHandler: { result, info in
+                let downloadFinined: Bool = !(setSafeBool(info?[PHImageCancelledKey])) && info?[PHImageErrorKey] == nil && !(setSafeBool(info?[PHImageResultIsDegradedKey]))
+                if downloadFinined && result != nil {
+                    DispatchQueue.global(qos: .default).async(execute: {
+                        succeed(result)
+                    })
+                } else {
+                    failed()
+                }
+            })
+        }
+        return requestID ?? 0
+    }
+    class func getPlayerItem(with asset: PHAsset?,
+                             startRequestIcloud: @escaping (_ cloudRequestId: PHImageRequestID) -> Void,
+                             progressHandler: @escaping (_ progress: Double) -> Void,
+                             completion: @escaping (_ playerItem: AVPlayerItem?) -> Void,
+                             failed: @escaping (_ info: [AnyHashable : Any]?) -> Void) -> PHImageRequestID {
+        let options = PHVideoRequestOptions()
+        options.deliveryMode = .fastFormat
+        options.isNetworkAccessAllowed = false
+        if let anAsset = asset {
+            return PHImageManager.default().requestPlayerItem(forVideo: anAsset, options: options, resultHandler: { playerItem, info in
+                let downloadFinined: Bool = !(setSafeBool(info?[PHImageCancelledKey])) && info?[PHImageErrorKey] == nil && !(setSafeBool(info?[PHImageResultIsDegradedKey]))
+                if downloadFinined && (playerItem != nil) {
+                    DispatchQueue.main.async(execute: {
+                        completion(playerItem)
+                    })
+                } else {
+                    if (setSafeBool(info?[PHImageResultIsInCloudKey])) {
+                        var cloudRequestId = PHImageRequestID(0)
+                        let cloudOptions = PHVideoRequestOptions()
+                        cloudOptions.deliveryMode = .mediumQualityFormat
+                        cloudOptions.isNetworkAccessAllowed = true
+                        cloudOptions.progressHandler = { progress, error, stop, info in
+                            DispatchQueue.main.async(execute: {
+                                progressHandler(progress)
+                            })
+                        }
+                        cloudRequestId = PHImageManager.default().requestPlayerItem(forVideo: anAsset, options: cloudOptions, resultHandler: { playerItem, info in
+                            let downloadFinined: Bool = !(setSafeBool(info?[PHImageCancelledKey])) && info?[PHImageErrorKey] == nil && !(setSafeBool(info?[PHImageResultIsDegradedKey]))
+                            if downloadFinined && (playerItem != nil) {
+                                DispatchQueue.main.async(execute: {
+                                    completion(playerItem)
+                                })
+                            } else {
+                                DispatchQueue.main.async(execute: {
+                                    failed(info)
+                                })
+                            }
+                        })
+                        DispatchQueue.main.async(execute: {
+                            startRequestIcloud(cloudRequestId)
+                        })
+                    } else {
+                        DispatchQueue.main.async(execute: {
+                            failed(info)
+                        })
+                    }
+                }
+
+            })
+        }
+        return 0
     }
 
     
