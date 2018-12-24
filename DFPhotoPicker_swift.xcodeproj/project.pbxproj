@@ -10,6 +10,7 @@
 		5232963A21C2A5820039CADA /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5232963921C2A5820039CADA /* CustomViewController.swift */; };
 		5232963C21C2A5A80039CADA /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5232963B21C2A5A80039CADA /* MenuViewController.swift */; };
 		5232963E21C2B0A90039CADA /* BaseUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5232963D21C2B0A90039CADA /* BaseUITableView.swift */; };
+		523DB3F421CCCE220021827C /* DFAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 523DB3F321CCCE220021827C /* DFAlbumModel.m */; };
 		5246370821C0F6E90037A92A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246370721C0F6E90037A92A /* AppDelegate.swift */; };
 		5246370F21C0F6EB0037A92A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5246370E21C0F6EB0037A92A /* Assets.xcassets */; };
 		5246371221C0F6EB0037A92A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5246371021C0F6EB0037A92A /* LaunchScreen.storyboard */; };
@@ -35,6 +36,8 @@
 		5232963921C2A5820039CADA /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		5232963B21C2A5A80039CADA /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5232963D21C2B0A90039CADA /* BaseUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITableView.swift; sourceTree = "<group>"; };
+		523DB3F221CCCE220021827C /* DFAlbumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DFAlbumModel.h; sourceTree = "<group>"; };
+		523DB3F321CCCE220021827C /* DFAlbumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DFAlbumModel.m; sourceTree = "<group>"; };
 		5246370421C0F6E90037A92A /* DFPhotoPicker_swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DFPhotoPicker_swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5246370721C0F6E90037A92A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5246370E21C0F6EB0037A92A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,6 +101,13 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		523DB3EF21CC98F20021827C /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		524636FB21C0F6E90037A92A = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +145,8 @@
 			children = (
 				5253BFDE21C3AA7C000B1C07 /* DFPhotoModel.h */,
 				5253BFDD21C3AA7B000B1C07 /* DFPhotoModel.m */,
+				523DB3F221CCCE220021827C /* DFAlbumModel.h */,
+				523DB3F321CCCE220021827C /* DFAlbumModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,6 +199,7 @@
 		52A6F97D21C1EE5A00C39CA5 /* DFPhotoPicker */ = {
 			isa = PBXGroup;
 			children = (
+				523DB3EF21CC98F20021827C /* Tools */,
 				5253BFD521C37AEA000B1C07 /* Category */,
 				5253BFD021C375F7000B1C07 /* Controller */,
 				5253BFCC21C3582F000B1C07 /* Macro */,
@@ -385,6 +398,7 @@
 				5232963E21C2B0A90039CADA /* BaseUITableView.swift in Sources */,
 				5253BFC921C35811000B1C07 /* DFPhotoTools.swift in Sources */,
 				5232963C21C2A5A80039CADA /* MenuViewController.swift in Sources */,
+				523DB3F421CCCE220021827C /* DFAlbumModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

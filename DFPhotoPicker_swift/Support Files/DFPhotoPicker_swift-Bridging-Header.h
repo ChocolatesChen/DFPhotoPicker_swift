@@ -3,3 +3,4 @@
 //
 
 #import "DFPhotoModel.h"
+#import "DFAlbumModel.h"
